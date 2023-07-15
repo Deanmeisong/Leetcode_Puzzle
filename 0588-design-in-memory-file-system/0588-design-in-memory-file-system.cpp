@@ -1,28 +1,27 @@
-
 class FileSystem {
     class TrieNode {
-        public:
-            bool isFile = false;
-            map<string, TrieNode*> Map;
+    public:
+        bool isFile = false;
+        map<string, TrieNode*> Map;
     };
+public:
     TrieNode* root;
     unordered_map<string, string> fileContent;
-public:
+    
     FileSystem() {
         root = new TrieNode();
     }
     
     vector<string> ls(string path) {
         TrieNode* node = root;
-        int len = path.length();
         string str;
+        int len = path.length();
         for(int i = 1; i < len; ++i) {
             int i0 = i;
             while(i < len && path[i] != '/') ++i;
             str = path.substr(i0, i - i0);
             node = node->Map[str];
         }
-        
         if(node->isFile) return {str};
         vector<string> res;
         for(auto a : node->Map) res.push_back(a.first);
@@ -31,33 +30,30 @@ public:
     
     void mkdir(string path) {
         TrieNode* node = root;
-        int len = path.length();
         string str;
+        int len = path.length();
         for(int i = 1; i < len; ++i) {
             int i0 = i;
-            while(i < len && path[i] !='/') ++i;
+            while(i < len && path[i] != '/') ++i;
             str = path.substr(i0, i - i0);
-            if(node->Map.find(str) == node->Map.end()) {
-                node->Map[str] = new TrieNode();
-            }
+            if(node->Map.find(str) == node->Map.end()) node->Map[str] = new TrieNode();
             node = node->Map[str];
         }
     }
     
     void addContentToFile(string filePath, string content) {
         TrieNode* node = root;
-        int len = filePath.length();
         string str;
+        int len = filePath.length();
         for(int i = 1; i < len; ++i) {
             int i0 = i;
             while(i < len && filePath[i] != '/') ++i;
             str = filePath.substr(i0, i - i0);
-            if(node->Map.find(str) == node->Map.end()) {
-                node->Map[str] = new TrieNode();
-            }
+            if(node->Map.find(str) == node->Map.end()) node->Map[str] = new TrieNode();
             node = node->Map[str];
         }
-        node->isFile = 1;
+        
+        node->isFile = true;
         fileContent[filePath] += content;
     }
     
