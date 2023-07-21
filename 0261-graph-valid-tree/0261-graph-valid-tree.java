@@ -23,9 +23,9 @@ class Solution {
         Arrays.fill(nums, -1);
         
         // perform union find
-        for (int i = 0; i < edges.length; i++) {
-            int x = find(nums, edges[i][0]);
-            int y = find(nums, edges[i][1]);
+        for (int[] e : edges) {
+            int x = find(nums, e[0]);
+            int y = find(nums, e[1]);
             
             // if two vertices happen to be in the same set
             // then there's a cycle
