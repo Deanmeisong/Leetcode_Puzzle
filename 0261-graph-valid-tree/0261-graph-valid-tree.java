@@ -32,7 +32,7 @@ class Solution {
             if (x == y) return false;
             
             // union
-            nums[x] = y;
+            nums[y] = x;
         }
         
         return edges.length == n - 1;
