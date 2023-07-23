@@ -4,12 +4,13 @@ public:
         vector<int> ans;
         
         for(int n = left; n <= right; ++n) {
+            const string s = to_string(n);
             bool valid = true;
-            int t = n;
-            while(t and valid) {
-                const int r = t % 10;
-                if(r == 0 or n % r) valid = false;
-                t /= 10;
+            for(char c : s) {
+                if((c - '0') == 0 or n % ((c - '0')) != 0) {
+                    valid = false;
+                    break;
+                }
             }
             if(valid) ans.push_back(n);
         }
