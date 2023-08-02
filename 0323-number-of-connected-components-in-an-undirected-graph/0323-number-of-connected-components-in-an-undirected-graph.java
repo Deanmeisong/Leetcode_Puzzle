@@ -14,10 +14,15 @@ class Solution {
     }
     
     int find(int[] roots, int x) {
-        while(x != roots[x]) {
-            roots[x] = roots[roots[x]];
-            x = roots[roots[x]];
-        }
+        if(x != roots[x]) x = find(roots, roots[x]);
         return x;
     }
+    
+    // int find(int[] roots, int x) {
+    //     while(x != roots[x]) {
+    //         roots[x] = roots[roots[x]];
+    //         x = roots[roots[x]];
+    //     }
+    //     return x;
+    // }
 }
