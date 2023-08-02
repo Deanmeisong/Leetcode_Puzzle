@@ -16,7 +16,7 @@ class Solution {
     int find(int[] roots, int x) {
         while(x != roots[x]) {
             roots[x] = roots[roots[x]];
-            x = roots[x];
+            x = roots[roots[x]];
         }
         return x;
     }
