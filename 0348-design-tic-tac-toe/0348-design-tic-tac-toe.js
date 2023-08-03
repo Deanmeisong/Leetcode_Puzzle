@@ -1,19 +1,18 @@
-class TicTacToe:
-    def __init__(self, n):
-        self.rs = [0] * n
-        self.cs = [0] * n
-        self.n = n
-        self.diag = 0
-        self.antid = 0
-
-    def move(self, row, col, player):
-        add = 1 if player == 1 else -1
-        self.rs[row] += add
-        self.cs[col] += add
-        if row == col:
-            self.diag += add
-        if row + col == len(self.cs) - 1:
-            self.antid += add
-        if abs(self.rs[row]) == self.n or abs(self.cs[col]) == self.n or abs(self.diag) == self.n or abs(self.antid) == self.n:
-            return player
-        return 0
+class TicTacToe {
+    constructor(n) {
+        this.rs = new Array(n).fill(0);
+        this.cs = new Array(n).fill(0);
+        this.n = n;
+        this.diag = 0;
+        this.antid = 0;
+    }
+    move(row, col, player) {
+        let add = player === 1 ? 1 : -1;
+        this.rs[row] += add;
+        this.cs[col] += add;
+        if (row === col) this.diag += add;
+        if (row + col === this.cs.length - 1) this.antid += add;
+        if (Math.abs(this.rs[row]) === this.n || Math.abs(this.cs[col]) === this.n || Math.abs(this.diag) === this.n || Math.abs(this.antid) === this.n) return player;
+        return 0;
+    }
+}
