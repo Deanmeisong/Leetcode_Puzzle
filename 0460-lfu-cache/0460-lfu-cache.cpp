@@ -1,31 +1,32 @@
 struct CacheNode {
-    int key; int value; long tick; int freq;
-    bool operator < (const CacheNode& cn) const {
-        if(freq < cn.freq) return true;
-        if(freq == cn.freq) return tick < cn.tick;
+    int key; int value; int freq; long tick;
+    bool operator < (const CacheNode& ch) const {
+        if(freq < ch.freq) return true;
+        if(freq == ch.freq) return tick < ch.tick;
         return false;
     }
 };
+
 class LFUCache {
 private:
-    int capacity_;
-    long tick_;
+    int c_; int t_;
     unordered_map<int, CacheNode> m_;
-    set<CacheNode> cs;
+    set<CacheNode> cache;
 public:
     LFUCache(int capacity) {
-        this->capacity_ = capacity; this->tick_ = 0;
+        this->c_ = capacity; this->t_ = 0;
     }
     
     int get(int key) {
         auto it = m_.find(key);
         if(it == m_.cend()) return -1;
+        int value = it->second.value;
         touch(it->second);
-        return it->second.value;
+        return value;
     }
     
     void put(int key, int value) {
-        if(capacity_ == 0) return;
+        if(c_ == 0) return;
         auto it = m_.find(key);
         if(it != m_.cend()) {
             it->second.value = value;
@@ -33,23 +34,23 @@ public:
             return;
         }
         
-        if(m_.size() == capacity_) {
-            const CacheNode& node = *cs.cbegin();
+        if(m_.size() == c_) {
+            const CacheNode& node = *cache.cbegin();
             m_.erase(node.key);
-            cs.erase(node);
+            cache.erase(node);
+ 
         }
-
-        CacheNode node{key, value, ++tick_, 1};
-        m_[node.key] = node;
-        cs.insert(node);
-
+        
+        CacheNode ch{key, value, 1, ++t_};
+        cache.insert(ch);
+        m_[key] = ch;
     }
     
     void touch(CacheNode& ch) {
-        cs.erase(ch);
+        cache.erase(ch);
         ++ch.freq;
-        ch.tick = (++tick_);
-        cs.insert(ch);
+        ch.tick = ++t_;
+        cache.insert(ch);
     }
 };
 
