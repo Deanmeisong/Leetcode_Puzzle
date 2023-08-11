@@ -1,8 +1,7 @@
-class Solution {
-    public boolean isIdealPermutation(int[] nums) {
-        for(int i = 0; i < nums.length; ++i) {
-            if(Math.abs(nums[i] - i) > 1) return false;
-        }
-        return true;
-    }
-}
+class Solution:
+    def isIdealPermutation(self, nums: List[int]) -> bool:
+        for x in range(len(nums)):
+            if abs(nums[x] - x) > 1:
+                return False
+        return True
+            
