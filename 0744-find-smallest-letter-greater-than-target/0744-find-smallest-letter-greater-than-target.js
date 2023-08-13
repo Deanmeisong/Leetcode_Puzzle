@@ -1,0 +1,18 @@
+/**
+ * @param {character[]} letters
+ * @param {character} target
+ * @return {character}
+ */
+var nextGreatestLetter = function(letters, target) {
+        let left = 0, right = letters.length - 1, mid;
+        while (left <= right) {
+            mid = (left + right) // 2;
+            if (letters[mid] <= target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return left == letters.length ? letters[0] : letters[left];
+};
