@@ -1,10 +1,5 @@
-class Solution(object):
-    def shortestSequence(self, rolls, k):
-        """
-        :type rolls: List[int]
-        :type k: int
-        :rtype: int
-        """
+class Solution:
+    def shortestSequence(self, rolls: List[int], k: int) -> int:
         s = set()
         res = 1
         for i in rolls:
