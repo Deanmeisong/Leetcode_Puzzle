@@ -1,27 +1,23 @@
-class Solution(object):
-    def confusingNumberII(self, N):
-        """
-        :type n: int
-        :rtype: int
-        """
-        valid = [0,1,6,8,9]
-        mapping = {0: 0,1: 1,6: 9,8: 8, 9: 6}
-
-        self.count = 0
-
-        def backtrack(v, rotation,digit):
-            if v: 
-                if v != rotation: 
-                    self.count += 1  
-            for i in valid: 
-                if v*10+i > N:
-                    break 
-                else:
-                    backtrack(v*10+i, mapping[i]*digit + rotation, digit*10)
+class Solution:
+    def confusingNumberII(self, n: int) -> int:
+        valid = [0, 1, 6, 8, 9]
+        mapping = {0:0, 1:1, 6:9, 9:6, 8:8}
+        self.count = 0;
         
-        backtrack(1,1, 10)
-        backtrack(6,9,10)
-        backtrack(8,8,10)
-        backtrack(9,6,10)
-
-        return self.count   
+        def bt(v, rt, d):
+            if v:
+                if v != rt:
+                    self.count += 1
+            for i in valid:
+                if v*10 + i > n:
+                    break
+                else:
+                    bt(v*10 + i, mapping[i]*d + rt, d*10)
+        
+        bt(1, 1, 10)
+        bt(6, 9, 10)
+        bt(9, 6, 10)
+        bt(8, 8, 10)
+        
+        return self.count
+        
