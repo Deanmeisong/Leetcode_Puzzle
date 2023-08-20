@@ -4,17 +4,17 @@ class Solution {
         int n = expression.length();
         int count = 0;
         
-        // for (int i = 0; i < n; i++) {
-        //     if (expression.charAt(i) == '{') {
-        //         count++;
-        //     } else if (expression.charAt(i) == '}') {
-        //         count--;
-        //         if (count == 0 && i != n - 1) {
-        //             expression = "{" + expression + "}";
-        //             break;
-        //         }
-        //     }
-        // }
+        for (int i = 0; i < n; i++) {
+            if (expression.charAt(i) == '{') {
+                count++;
+            } else if (expression.charAt(i) == '}') {
+                count--;
+                if (count == 0 && i != n - 1) {
+                    expression = "{" + expression + "}";
+                    break;
+                }
+            }
+        }
 
         // the following code is the same in the video
         // new test case: "{a,b},x{c,{d,e}y}"
