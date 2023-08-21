@@ -1,11 +1,13 @@
 class Solution {
-    public int minBuildTime(int[] blocks, int split) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for(int b : blocks) pq.add(b);
+public:
+    int minBuildTime(vector<int>& blocks, int split) {
+        priority_queue<int> pq;
+        for(int b : blocks) pq.push(-b);
         while(pq.size() > 1) {
-            int a = pq.poll(), b = pq.poll();
-            pq.add(split + b);
+            int a = -pq.top(); pq.pop();
+            int b = -pq.top(); pq.pop();
+            pq.push(-(split + b));
         }
-        return pq.poll();
+        return -pq.top();
     }
-}
+};
