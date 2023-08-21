@@ -1,11 +1,7 @@
-class Solution(object):
-    def longestDecomposition(self, s):
-        """
-        :type text: str
-        :rtype: int
-        """
+class Solution:
+    def longestDecomposition(self, s: str) -> int:
         res, n, l, r = 0, len(s), "", ""
-        for i in xrange(n):
+        for i in range(n):
             l += s[i]
             r = s[n - i - 1] + r
             if l == r:
