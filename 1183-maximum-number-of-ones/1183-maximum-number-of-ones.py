@@ -1,12 +1,5 @@
-class Solution(object):
-    def maximumNumberOfOnes(self, width, height, sideLength, maxOnes):
-        """
-        :type width: int
-        :type height: int
-        :type sideLength: int
-        :type maxOnes: int
-        :rtype: int
-        """
+class Solution:
+    def maximumNumberOfOnes(self, width: int, height: int, sideLength: int, maxOnes: int) -> int:
         count = []
         for i in range(sideLength):
             for j in range(sideLength):
