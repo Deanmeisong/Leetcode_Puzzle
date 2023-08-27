@@ -1,9 +1,5 @@
-class Solution(object):
-    def asteroidCollision(self, A):
-        """
-        :type asteroids: List[int]
-        :rtype: List[int]
-        """
+class Solution:
+    def asteroidCollision(self, A: List[int]) -> List[int]:
         st = []
         for a in A:
             flag = 1
