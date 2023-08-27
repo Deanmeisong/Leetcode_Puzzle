@@ -20,7 +20,7 @@ class Solution(object):
         n = len(st)
         ans = [0] * n
         
-        for i in range(n, 0, -1):
-            ans[i - 1] = (st[-1])
+        for i in range(n - 1, -1, -1):
+            ans[i] = (st[-1])
             st.pop()
         return ans
