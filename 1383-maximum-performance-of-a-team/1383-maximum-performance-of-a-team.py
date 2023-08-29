@@ -1,12 +1,5 @@
-class Solution(object):
-    def maxPerformance(self, n, speed, efficiency, k):
-        """
-        :type n: int
-        :type speed: List[int]
-        :type efficiency: List[int]
-        :type k: int
-        :rtype: int
-        """
+class Solution:
+    def maxPerformance(self, n: int, speed: List[int], efficiency: List[int], k: int) -> int:
         h = []
         res = sSum = 0
         for e, s in sorted(zip(efficiency, speed), reverse = 1):
