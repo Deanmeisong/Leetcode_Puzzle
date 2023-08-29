@@ -1,9 +1,5 @@
-class Solution(object):
-    def longestPrefix(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
+class Solution:
+    def longestPrefix(self, s: str) -> str:
         l, r, b, k, mod = 0, 0, 1, 0, 10**9 + 7
         for i in range(0, len(s) - 1):
             l = (l * 128 + ord(s[i])) % mod
