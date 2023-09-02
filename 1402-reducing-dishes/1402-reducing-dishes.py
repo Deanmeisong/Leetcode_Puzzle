@@ -1,9 +1,5 @@
-class Solution(object):
-    def maxSatisfaction(self, satisfaction):
-        """
-        :type satisfaction: List[int]
-        :rtype: int
-        """
+class Solution:
+    def maxSatisfaction(self, satisfaction: List[int]) -> int:
         satisfaction.sort(reverse = True);
         res, tmp = 0, 0
         for s in satisfaction:
