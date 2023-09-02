@@ -1,13 +1,12 @@
 class Solution {
-public:
-    int maxSatisfaction(vector<int>& satisfaction) {
-        std::sort(satisfaction.begin(), satisfaction.end(), std::greater<>());
+    public int maxSatisfaction(int[] satisfaction) {
+        Arrays.sort(satisfaction);
+        int n = satisfaction.length;
         int res = 0, tmp = 0;
-        for(int s : satisfaction) {
-            if(tmp + s <= 0) break;
-            tmp += s;
+        for(int i = n - 1; i >= 0 && satisfaction[i] + tmp > 0; --i) {
+            tmp += satisfaction[i];
             res += tmp;
         }
         return res;
     }
-};
+}
