@@ -1,19 +1,23 @@
-class NumArray {
-    private int[] sum;
+class NumArray(object):
 
-    public NumArray(int[] nums) {
-        sum = new int[nums.length + 1];
-        for (int i = 0; i < nums.length; i++) {
-            sum[i + 1] = sum[i] + nums[i];
-        }
-    }
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.presum = nums;
+        for i in range(len(self.presum) - 1):
+            self.presum[i + 1] += self.presum[i]
 
-    public int sumRange(int i, int j) {
-        return sum[j + 1] - sum[i];
-    }
-}
-/**
- * Your NumArray object will be instantiated and called as such:
- * NumArray obj = new NumArray(nums);
- * int param_1 = obj.sumRange(left,right);
- */
+    def sumRange(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: int
+        """
+        if left == 0: return self.presum[right]
+        return self.presum[right] - self.presum[left - 1]
+
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(left,right)
