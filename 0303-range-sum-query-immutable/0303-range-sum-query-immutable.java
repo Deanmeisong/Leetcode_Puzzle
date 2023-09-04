@@ -1,15 +1,14 @@
 class NumArray {
-    private int[] sum;
-
+    int[] preSum;
     public NumArray(int[] nums) {
-        sum = new int[nums.length + 1];
-        for (int i = 0; i < nums.length; i++) {
-            sum[i + 1] = sum[i] + nums[i];
-        }
+        preSum = nums; // pass by pointer!
+        for (int i = 1; i < preSum.length; ++i)
+            preSum[i] += preSum[i-1]; 
     }
-
-    public int sumRange(int i, int j) {
-        return sum[j + 1] - sum[i];
+    
+    public int sumRange(int left, int right) {
+        if (left == 0) return preSum[right];
+        return preSum[right] - preSum[left-1];
     }
 }
 /**
