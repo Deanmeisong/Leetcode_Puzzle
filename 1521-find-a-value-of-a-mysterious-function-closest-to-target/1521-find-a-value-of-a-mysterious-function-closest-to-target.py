@@ -1,10 +1,5 @@
-class Solution(object):
-    def closestToTarget(self, arr, target):
-        """
-        :type arr: List[int]
-        :type target: int
-        :rtype: int
-        """
+class Solution:
+    def closestToTarget(self, arr: List[int], target: int) -> int:
         s = set()
         res = float('inf')
         for i in range(len(arr)):
