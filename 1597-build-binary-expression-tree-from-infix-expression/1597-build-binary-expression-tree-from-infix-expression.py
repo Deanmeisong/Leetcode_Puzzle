@@ -4,14 +4,11 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def expTree(self, s):
-        """
-        :type s: str
-        :rtype: Node
-        """
+class Solution:
+    def expTree(self, s: str) -> 'Node':
         tokens = collections.deque(list(s))
         return self.parse_expression(tokens)
+        
     def parse_expression(self, tokens):
         lhs = self.parse_term(tokens)
         while len(tokens)> 0 and tokens[0] in ['+', '-']:
