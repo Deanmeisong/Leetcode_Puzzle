@@ -1,5 +1,10 @@
-class Solution:
-    def minCost(self, n: int, cuts: List[int]) -> int:
+class Solution(object):
+    def minCost(self, n, cuts):
+        """
+        :type n: int
+        :type cuts: List[int]
+        :rtype: int
+        """
         dp = {}
         def dfs(l, r):
             if r - l == 1: return 0
@@ -13,5 +18,4 @@ class Solution:
             dp[(l, r)] = res = 0 if res == float("inf") else res
             return res
         return dfs(0, n)
-        
         
