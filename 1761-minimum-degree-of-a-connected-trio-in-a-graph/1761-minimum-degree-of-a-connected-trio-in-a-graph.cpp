@@ -10,8 +10,8 @@ public:
             connected[e[1]][e[0]] = 1;
             degree[e[0]] += 1;
             degree[e[1]] += 1;
-            next[e[0]].push_back(e[1]);
-            next[e[1]].push_back(e[0]);
+            int e1 = min(e[0], e[1]), e2 = max(e[0], e[1]);
+            next[e1].push_back(e2);
         }
         
         int ret = INT_MAX;
