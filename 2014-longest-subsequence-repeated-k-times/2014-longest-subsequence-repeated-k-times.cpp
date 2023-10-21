@@ -24,7 +24,7 @@ public:
         if(tmp.size() > ret.size() || (tmp.size() == ret.size() && tmp > ret))
             ret = tmp;
         
-        if(tmp.size() == 7) return;
+        if(tmp.size() > 7) return;
         for(char c : t) {
             tmp.push_back(c);
             dfs(t, tmp);
