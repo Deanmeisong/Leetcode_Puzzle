@@ -18,25 +18,25 @@ public:
     }
     
     bool check(int T, vector<vector<int>>& time) {
-        int n = time.size();
-        int days = 0;
-        
-        for (int i=0; i<n; i++)
-        {
-            days += time[i][0];
-            
-            if (days > T+time[i][1])
-            {
-                return false;
-            }
-        }        
-        return true;      
+//         int n = time.size();
 //         int days = 0;
-//         for(auto t : time) {
-//             days += t[0];
-//             if(days > T + t[1]) return false;
-//         }
         
-//         return true;
+//         for (int i=0; i<n; i++)
+//         {
+//             days += time[i][0];
+            
+//             if (days > T+time[i][1])
+//             {
+//                 return false;
+//             }
+//         }        
+//         return true;      
+        int days = 0;
+        for(auto& t : time) {
+            days += t[0];
+            if(days > T + t[1]) return false;
+        }
+        
+        return true;
     }
 };
