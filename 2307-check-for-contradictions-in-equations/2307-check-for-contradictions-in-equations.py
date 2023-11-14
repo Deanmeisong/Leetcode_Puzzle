@@ -1,5 +1,10 @@
-class Solution:
-    def checkContradictions(self, equations: List[List[str]], values: List[float]) -> bool:
+class Solution(object):
+    def checkContradictions(self, equations, values):
+        """
+        :type equations: List[List[str]]
+        :type values: List[float]
+        :rtype: bool
+        """
         weights = defaultdict(lambda: defaultdict(lambda: 1))
         uf = {}
         def find(x):
@@ -18,3 +23,4 @@ class Solution:
             weights[xp][yp] = w*weights[y][yp]*(1/weights[x][xp])
             return False
         return any(tryUnion(b,a,v) for (a,b),v in zip(equations,values))
+        
