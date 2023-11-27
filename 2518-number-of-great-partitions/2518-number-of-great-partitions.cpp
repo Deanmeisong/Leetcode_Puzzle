@@ -4,9 +4,9 @@ class Solution {
     LL M = 1e9 + 7;
 public:
     int countPartitions(vector<int>& nums, int k) {
-        int n = nums.size();
         if(accumulate(nums.begin(), nums.end(), 0LL) < 2 * k) return 0;
-        
+        int n = nums.size();
+
         nums.insert(nums.begin(), 0);
         dp[0][0] = 1;
         
