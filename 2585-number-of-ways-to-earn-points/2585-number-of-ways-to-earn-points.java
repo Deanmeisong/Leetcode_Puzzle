@@ -1,19 +1,22 @@
-using LL = long long;
 class Solution {
-public:
-    LL dp[51][1005];
-    LL M = 1e9 + 7;
-    int waysToReachTarget(int target, vector<vector<int>>& types) {
-        int n = types.size();
-        types.insert(types.begin(), {0, 0});
+    long[][] dp = new long[51][1005];
+    long M = 1000000007;
+
+    public int waysToReachTarget(int target, int[][] types) {
+        int n = types.length;
+        int[][] newTypes = new int[n + 1][2];
+        newTypes[0] = new int[]{0, 0};
+        System.arraycopy(types, 0, newTypes, 1, n);
+
         dp[0][0] = 1;
-        for(int i = 1; i <= n; ++i)
-            for(int j = 0; j <= target; ++j) {
-                for(int k = 0; k <= types[i][0]; ++k) {
-                    if(types[i][1] * k > j) break;
-                    dp[i][j] = (dp[i][j] + dp[i - 1][j - k * types[i][1]]) % M;
-                }    
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 0; j <= target; ++j) {
+                for (int k = 0; k <= newTypes[i][0]; ++k) {
+                    if (newTypes[i][1] * k > j) break;
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j - k * newTypes[i][1]]) % M;
+                }
             }
-        return dp[n][target];
+        }
+        return (int) dp[n][target];
     }
-};
+}
