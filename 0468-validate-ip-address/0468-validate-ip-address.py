@@ -1,9 +1,5 @@
-class Solution(object):
-    def validIPAddress(self, IP):
-        """
-        :type queryIP: str
-        :rtype: str
-        """
+class Solution:
+    def validIPAddress(self, IP: str) -> str:
         def isIpv4(s):
             try: return str(int(s)) == s and 0 <= int(s) <= 255
             except: return False
