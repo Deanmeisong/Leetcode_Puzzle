@@ -16,12 +16,12 @@ public:
             }
         }
         
-        int m = queries.size();
-        vector<int> ans(m, 0);
+        vector<int> ans;
         
-        for(int k = 0; k < m; ++k) {
-            int x = queries[k][0], y = queries[k][1];
-            if (row[x] > 0 || col[y] > 0 || d1[x + y] > 0 || d2[x - y] > 0) ans[k] = 1;
+        for(auto& q : queries) {
+            int x = q[0], y = q[1];
+            if (row[x] > 0 || col[y] > 0 || d1[x + y] > 0 || d2[x - y] > 0) ans.push_back(1);
+            else ans.push_back(0);
             for(int nx = x - 1; nx <= x + 1; ++nx)
                 for(int ny = y - 1; ny <= y + 1; ++ny) {
                     if(nx < 0 || nx >= n || ny < 0 || ny >= n || !s.count(f(nx, ny))) continue;
