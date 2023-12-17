@@ -1,22 +1,23 @@
-class Solution {
-public:
-    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
-        int m = matrix.size(), n = matrix[0].size();
-        int cnt = 0;
-        for(int i = 0; i < m; ++i) {
-            vector<int> row(n);
-            for(int j = i; j < m; ++j) {
-                for(int k = 0; k < n; ++k) row[k] += matrix[j][k];
-                unordered_map<int, int> Map;
-                Map[0] = 1;
-                int presum = 0;
-                for(int k = 0; k < n; ++k) {
-                    presum += row[k];
-                    cnt += Map[presum - target];
-                    ++Map[presum];
-                }
-            }
-        }
-        return cnt;
-    }
-};
+class Solution(object):
+    def numSubmatrixSumTarget(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: int
+        """
+        m, n, cnt = len(matrix), len(matrix[0]), 0
+        for i in range(m):
+            row = [0] * n
+            for j in range(i, m):
+                for k in range(n):
+                    row[k] += matrix[j][k]
+                dic = collections.defaultdict(int)
+                dic[0] = 1
+                presum = 0
+                for k in range(n):
+                    presum += row[k]
+                    if dic[presum - target]: cnt += dic[presum - target]
+                    dic[presum] += 1
+        return cnt
+    
+        
