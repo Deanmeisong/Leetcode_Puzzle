@@ -12,7 +12,7 @@ public:
                 int presum = 0;
                 for(int k = 0; k < n; ++k) {
                     presum += row[k];
-                    if(Map[presum - target] != 0) cnt += Map[presum - target];
+                    cnt += Map[presum - target];
                     ++Map[presum];
                 }
             }
