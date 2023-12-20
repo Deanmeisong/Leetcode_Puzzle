@@ -22,10 +22,9 @@ public:
         stack<int>& s = stacks_[index];
         int val = s.top(); s.pop();
         if(s.size() == capacity_ - 1) aval_.insert(index);
-        auto it = prev(end(aval_));
-        while (stacks_.size() && stacks_.back().empty()) {
-          stacks_.pop_back();
-          aval_.erase(it--);
+        while(stacks_.size() && stacks_.back().empty()) {
+            stacks_.pop_back();
+            aval_.erase(stacks_.size());
         }
         return val;
         
