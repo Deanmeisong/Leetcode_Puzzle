@@ -1,5 +1,9 @@
-class Solution:
-    def longestPalindromeSubseq(self, s: str) -> int:
+class Solution(object):
+    def longestPalindromeSubseq(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
