@@ -1,10 +1,5 @@
-class Solution(object):
-    def numWays(self, steps, arrLen):
-        """
-        :type steps: int
-        :type arrLen: int
-        :rtype: int
-        """
+class Solution:
+    def numWays(self, steps: int, arrLen: int) -> int:
         n = min(steps//2+2, arrLen)
         dp = [0] * n
         M = 10**9 + 7
@@ -15,5 +10,3 @@ class Solution(object):
                 dp[i] = dp2[i] + (dp2[i-1] if i>=1 else 0) + (dp2[i+1] if i+1<n else 0)
                 dp[i] %= M
         return dp[0]
-
-                
