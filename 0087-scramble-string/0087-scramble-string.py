@@ -1,5 +1,10 @@
-class Solution:
-    def isScramble(self, s1: str, s2: str) -> bool:
+class Solution(object):
+    def isScramble(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """  
         n = len(s1)
         dp = [[[False] * (n + 1) for _ in range(n)] for _ in range(n + 1)]
         for k in range(1, n + 1):
@@ -15,3 +20,4 @@ class Solution:
                             dp[i][j][k] = True
                             break
         return dp[0][0][n]
+        
