@@ -1,5 +1,10 @@
-class Solution:
-    def waysToDistribute(self, n: int, k: int) -> int:
+class Solution(object):
+    def waysToDistribute(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
         dp = [[0 for _ in range(n+1)] for _ in range(k+1)]
 
         m = 1000000007
