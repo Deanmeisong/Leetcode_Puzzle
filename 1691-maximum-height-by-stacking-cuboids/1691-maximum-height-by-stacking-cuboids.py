@@ -1,9 +1,5 @@
-class Solution(object):
-    def maxHeight(self, cuboids):
-        """
-        :type cuboids: List[List[int]]
-        :rtype: int
-        """
+class Solution:
+    def maxHeight(self, cuboids: List[List[int]]) -> int:
         n = len(cuboids)
         for c in cuboids: c.sort()
         cuboids.sort()
