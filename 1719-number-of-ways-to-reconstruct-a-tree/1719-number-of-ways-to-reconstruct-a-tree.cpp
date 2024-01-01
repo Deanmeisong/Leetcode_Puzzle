@@ -1,6 +1,5 @@
 class Solution {
 public:
-    vector<int> children[501];
     vector<int> relative[501];
     int isRelative[501][501];
     unordered_set<int> visited;
@@ -27,7 +26,8 @@ public:
             int j = i + 1;
             while(j < nodes.size() && !isRelative[nodes[i]][nodes[j]]) ++j;
             if(j < nodes.size()) {
-                children[nodes[j]].push_back(nodes[i]);
+                for(auto rel : relative[nodes[i]]) 
+                    if(rel != nodes[j] && isRelative[rel][nodes[j]] == 0) return 0;
                 if(relative[nodes[i]].size() == relative[nodes[j]].size()) flag = 2;
             } else {
                 if(root == -1) root = nodes[i];
@@ -35,27 +35,8 @@ public:
             }
         }
 
-        dfs(root, 0);
         return flag;
     }
     
-    int dfs(int cur, int depth) {
-        if(flag == 0) return -1;
-        if(visited.find(cur) != visited.end()) {
-            flag = 0; return -1;
-        }
-        visited.insert(cur);
-        
-        int sum = 0;
-        
-        for(int child : children[cur]) {
-            sum += dfs(child, depth + 1);
-        }
-        
-        if(sum + depth != relative[cur].size()) {
-            flag = 0; return -1;
-        }
-        
-        return sum + 1;
-    }
+
 };
