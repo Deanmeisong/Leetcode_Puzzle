@@ -1,10 +1,5 @@
-class Solution(object):
-    def minimumTimeRequired(self, jobs, k):
-        """
-        :type jobs: List[int]
-        :type k: int
-        :rtype: int
-        """
+class Solution:
+    def minimumTimeRequired(self, jobs: List[int], k: int) -> int:
         n = len(jobs)
         self.res = sum(jobs)
         count = [0] * k
@@ -23,3 +18,4 @@ class Solution(object):
                 if count[i] == 0: break
         dfs(0)
         return self.res
+                
