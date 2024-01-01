@@ -1,9 +1,5 @@
-class Solution(object):
-    def checkWays(self, pairs):
-        """
-        :type pairs: List[List[int]]
-        :rtype: int
-        """
+class Solution:
+    def checkWays(self, pairs: List[List[int]]) -> int:
         relative = [[] for _ in range(501)]
         isRelative = [[0] * 501 for _ in range(501)]
         
@@ -30,4 +26,3 @@ class Solution(object):
                 else: return 0
                 
         return flag
-                
