@@ -1,11 +1,6 @@
-class Solution(object):
-    def minOperations(self, target, arr):
-        """
-        :type target: List[int]
-        :type arr: List[int]
-        :rtype: int
-        """
-        m = {x: i for i, x in enumerate(target)}
+class Solution:
+    def minOperations(self, target: List[int], arr: List[int]) -> int:
+        m = {x : i for i, x in enumerate(target)}
         dp = []
         for x in arr:
             if x not in m: continue
