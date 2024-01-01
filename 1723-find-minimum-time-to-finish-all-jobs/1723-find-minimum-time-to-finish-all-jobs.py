@@ -5,22 +5,21 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        self.res = sys.maxsize
+        n = len(jobs)
+        self.res = sum(jobs)
         count = [0] * k
+        jobs.sort(reverse = True)
         
         def dfs(cur):
             if cur == len(jobs): 
                 self.res = min(self.res, max(count))
                 return
             
-            seen = set()
             for i in range(k):
-                if count[i] in seen: continue
                 if count[i] + jobs[cur] >= self.res: continue
-                seen.add(count[i])
                 count[i] += jobs[cur]
                 dfs(cur + 1)
                 count[i] -= jobs[cur]
-        
+                if count[i] == 0: break
         dfs(0)
         return self.res
