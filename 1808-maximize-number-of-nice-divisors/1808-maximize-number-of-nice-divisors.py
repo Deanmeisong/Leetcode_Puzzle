@@ -1,7 +1,12 @@
-class Solution:
-    def maxNiceDivisors(self, n: int) -> int:
-        M = 10**9 + 7
-        if n <= 3: return n
-        if n % 3 == 0: return pow(3, n//3, M)
-        if n % 3 == 1: return (pow(3, (n-4)//3, M) * 4) % M
-        return (2*pow(3, n//3, M)) % M
+class Solution(object):
+    def maxNiceDivisors(self, x):
+        """
+        :type primeFactors: int
+        :rtype: int
+        """
+        if x <= 3: return x
+        
+        m = 10**9 + 7
+        if x % 3 == 0: return pow(3, x // 3, m)
+        if x % 3 == 1: return pow(3, (x - 4) // 3, m) * 4 % m
+        if x % 3 == 2: return pow(3, x // 3, m) * 2 % m
