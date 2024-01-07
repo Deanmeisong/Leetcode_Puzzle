@@ -1,10 +1,5 @@
-class Solution(object):
-    def minWastedSpace(self, packages, boxes):
-        """
-        :type packages: List[int]
-        :type boxes: List[List[int]]
-        :rtype: int
-        """
+class Solution:
+    def minWastedSpace(self, packages: List[int], boxes: List[List[int]]) -> int:
         packages.sort()
         res = float('inf')
         
