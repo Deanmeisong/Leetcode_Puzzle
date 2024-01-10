@@ -5,14 +5,14 @@ public:
         int n = obstacles.size();
         vector<int> rets;
         
-        for(int i = 0; i < n; ++i) {
-            if(arr.empty() || arr.back() <= obstacles[i]) {
-                arr.push_back(obstacles[i]);
+        for(int x : obstacles) {
+            if(arr.empty() || arr.back() <= x) {
+                arr.push_back(x);
                 rets.push_back(arr.size());
             } else {
-                auto iter = upper_bound(arr.begin(), arr.end(), obstacles[i]);
+                auto iter = upper_bound(arr.begin(), arr.end(), x);
                 
-                *iter = obstacles[i];
+                *iter = x;
                 rets.push_back(iter - arr.begin() + 1);
             }
             
