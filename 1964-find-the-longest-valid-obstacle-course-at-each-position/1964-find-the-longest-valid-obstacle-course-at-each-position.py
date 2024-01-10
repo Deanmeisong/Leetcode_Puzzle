@@ -1,9 +1,5 @@
-class Solution(object):
-    def longestObstacleCourseAtEachPosition(self, obstacles):
-        """
-        :type obstacles: List[int]
-        :rtype: List[int]
-        """
+class Solution:
+    def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
         arr, ret = [], []
         for x in obstacles:
             if not arr or arr[-1] <= x: 
