@@ -61,41 +61,21 @@ public:
         for(int i = 0; i < 100005; ++i) f[i] = i;
         auto primes = getPrimes(sqrt(L));
         
-        // for(int x : nums) {
-        //     int y = x;
-        //     for(int p : primes) {
-        //         if(x < p * p) break;
-        //         if(x % p == 0) {
-        //             if(find(x) != find(p)) Union(x, p);
-        //         }
-        //         while(x % p == 0) x/= p;
-        //     }
-        //     if(x > 1) {
-        //         if(find(x) != find(y)) Union(x, y);
-        //     }
-        // }
-        
-        for (int i=0; i<nums.size(); i++)
-        {
-            int x = nums[i];
-            for (auto p: primes)
-            {                
-                // if (p > x) break;        // 28.79%, 921ms
-                if (p * p > x) break;       // 86.30%, 315ms only iterate primes no greater than sqrt(x)
-                if (x%p==0)
-                {                    
-                    if (find(nums[i])!=find(p))                        
-                        Union(nums[i],p);                        
-                    while (x%p==0) x/=p;
+        for(int x : nums) {
+            int y = x;
+            for(int p : primes) {
+                if(x < p * p) break;
+                if(x % p == 0) {
+                    if(find(y) != find(p)) Union(y, p);
+                    while(x % p == 0) x/= p;
                 }
+                
             }
-            if (x > 1)  // x must be a prime factor
-            {
-                if (find(nums[i])!=find(x))                        
-                    Union(nums[i],x);                        
-            }            
+            if(x > 1) {
+                if(find(x) != find(y)) Union(x, y);
+            }
         }
-        
+       
     
         auto nums1 = nums;
         sort(nums1.begin(), nums1.end());
