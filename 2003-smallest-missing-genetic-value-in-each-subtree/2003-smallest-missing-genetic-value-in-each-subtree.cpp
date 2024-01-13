@@ -1,7 +1,7 @@
 class Solution {
 public:
-    vector<int> children[100005];
-    int setId[100005];
+    vector<int> children[100001];
+    int setId[100001];
     vector<unordered_set<int>> setList;
     vector<int> nums;
     vector<int> rets;
