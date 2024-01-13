@@ -1,57 +1,65 @@
 class Solution {
 public:
-    vector<int> children[100001];
-    int q = 1;
-    unordered_set<int> Set;
-    
-    void dfs(int node, vector<int>& rets) {
-        rets[node] = 1;
-        for(int child : children[node])
-            dfs(child, rets);
-    }
-    
-    
-    void dfs2(int node, vector<int>& nums) {
-        if(Set.find(nums[node]) != Set.end()) return;
-        Set.insert(nums[node]);
-        for(int child : children[node]) dfs2(child, nums);
-    }
+    vector<int> children[100005];
+    int setId[100005];
+    vector<unordered_set<int>> setList;
+    vector<int> nums;
+    vector<int> rets;
     
     vector<int> smallestMissingValueSubtree(vector<int>& parents, vector<int>& nums) {
+        // this->nums = nums;
+        // int n = parents.size();
+        // for(int i = 1; i < n; ++i)
+        //     if(parents[i] != -1) children[parents[i]].push_back(i);
+        // rets.resize(n);
+        // dfs(0);
+        // return rets;
+        
+        this->nums = nums;
         int n = parents.size();
-        vector<int>val2node(100001, -1);
+        for (int i=1; i<n; i++)        
+            children[parents[i]].push_back(i);
 
-        vector<int> rets(n, 1);
-        
-        for(int i = 1; i < n; ++i) {
-            if(parents[i] != -1) children[parents[i]].push_back(i);
-        }
-        
-        for (int i=0; i<n; i++)
-            val2node[nums[i]] = i;
-        
-        if(val2node[1] == -1) return rets;
-        
-        int node = val2node[1];
-        
-        for(int child : children[node])
-            dfs(child, rets);
-        
-        while(node != 0) {
-            int p = parents[node];
-            for(int child : children[p])
-                if(child != node) dfs(child, rets);
-            node = p;
-        }
-        
-        node = val2node[1];
-        while(node != -1) {
-            dfs2(node, nums);
-            while(Set.find(q) != Set.end()) ++q;
-            rets[node] = q;
-            node = parents[node];
-        }
-        
+        rets.resize(n);
+        dfs(0);
         return rets;
+    }
+    
+    void dfs(int node) {
+        if(children[node].empty()) {
+            setId[node] = setList.size();
+            setList.push_back({nums[node]});
+            rets[node] = nums[node] == 1 ? 2 : 1;
+        } else {
+            for(int child : children[node])
+                dfs(child);
+            
+            int maxSize = 0; int maxId;
+            for(int child : children[node]) {
+                if(setList[setId[child]].size() > maxSize) {
+                    maxSize = setList[setId[child]].size();
+                    maxId = setId[child];
+                }
+            }
+            setId[node] = maxId;
+            setList[maxId].insert(nums[node]);
+            
+            for(int child : children[node]) {
+                if(setId[child] == maxId) continue;
+                for(int x : setList[setId[child]])
+                    setList[maxId].insert(x);
+            }
+            
+            int maxMissing = 0;
+            for(int child : children[node])
+                maxMissing = max(maxMissing, rets[child]);
+            int x = maxMissing;
+            
+            while(setList[maxId].find(x) != setList[maxId].end()) ++x;
+            rets[node] = x;
+            
+        }
+        
+        
     }
 };
