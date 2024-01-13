@@ -7,13 +7,6 @@ public:
     vector<int> rets;
     
     vector<int> smallestMissingValueSubtree(vector<int>& parents, vector<int>& nums) {
-        // this->nums = nums;
-        // int n = parents.size();
-        // for(int i = 1; i < n; ++i)
-        //     if(parents[i] != -1) children[parents[i]].push_back(i);
-        // rets.resize(n);
-        // dfs(0);
-        // return rets;
         
         this->nums = nums;
         int n = parents.size();
