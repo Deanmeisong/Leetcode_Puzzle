@@ -1,9 +1,5 @@
-class Solution(object):
-    def isHappy(self, n):
-        """
-        :type n: int
-        :rtype: bool
-        """
+class Solution:
+    def isHappy(self, n: int) -> bool:
         dp = set()
         while n not in dp:
             dp.add(n)
