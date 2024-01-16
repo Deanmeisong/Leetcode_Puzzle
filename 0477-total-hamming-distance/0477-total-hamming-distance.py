@@ -1,9 +1,5 @@
-class Solution(object):
-    def totalHammingDistance(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+class Solution:
+    def totalHammingDistance(self, nums: List[int]) -> int:
         n = len(nums)
         ans = 0
         for j in range(32):
