@@ -8,7 +8,7 @@ public:
             father[x] = father[father[x]];
             x = father[x];
         }
-        return father[x];
+        return x;
     }
     void un(int x, int y) {
         x = father[x]; y = father[y];
