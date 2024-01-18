@@ -2,7 +2,12 @@ class Solution {
 public:
     vector<int> father;
     int find(int x) {
-        if(x != father[x]) father[x] = find(father[x]);
+        // if(x != father[x]) father[x] = find(father[x]);
+        // return father[x];
+        while(x != father[x]) {
+            father[x] = father[father[x]];
+            x = father[x];
+        }
         return father[x];
     }
     void un(int x, int y) {
