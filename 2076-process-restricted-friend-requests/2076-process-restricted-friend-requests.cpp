@@ -33,7 +33,7 @@ public:
                 }
             }
             
-            rets.push_back(flag == 1);
+            rets.push_back(flag);
             if(flag) un(uf, vf);
         }
         return rets;
