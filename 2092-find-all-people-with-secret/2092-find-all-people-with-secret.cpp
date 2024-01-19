@@ -35,8 +35,8 @@ public:
             }
                       
             for(auto x : tmp) {
-                if(ff(x) != 0) father[x] = x;
-                else Set.insert(x);
+                if(ff(x) == 0) Set.insert(x);
+                else father[x] = x;
             }
             
             i = j - 1;
