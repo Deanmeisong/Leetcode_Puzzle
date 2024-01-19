@@ -1,7 +1,6 @@
 class Solution {
 public:
-    int father[100001];
-    // vector<int> father;
+    vector<int> father;
     int ff(int x) {
         while(father[x] != x) {
             father[x] = father[father[x]];
@@ -18,6 +17,7 @@ public:
         return a[2] < b[2];
     }
     vector<int> findAllPeople(int n, vector<vector<int>>& meetings, int firstPerson) {
+        father.resize(n);
         for(int i = 0; i < n; ++i) father[i] = i;
         sort(meetings.begin(), meetings.end(), cmp);
 
