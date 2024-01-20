@@ -17,13 +17,6 @@ public:
             while(len--) {
                 int cur = q.front(); q.pop();
                 int nxt = favorite[cur];
-            //                 indegrees[nxt]--;
-            // if (indegrees[nxt]==0)            
-            // {
-            //     q.push(nxt);                                      
-            //     visited[nxt] = 1;
-            // }                
-            // depths[nxt] = depths[cur]+1;
                 if(--indegrees[nxt] == 0) {
                     q.push(nxt);
                     visited[nxt] = 1;
