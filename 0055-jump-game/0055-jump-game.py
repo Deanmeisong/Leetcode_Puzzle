@@ -1,9 +1,5 @@
-class Solution(object):
-    def canJump(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
         n = len(nums)
         if n == 1: return True
         far = 0
