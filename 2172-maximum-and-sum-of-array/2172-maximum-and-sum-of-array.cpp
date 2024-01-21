@@ -7,14 +7,21 @@ public:
         dp[0][0] = 0;
         int ret = 0;
         
-        for(int i = 1; i <= n; ++i) {
-            for(int state = 0; state < pow(3, m); ++state) {
-                for(int j = 0; j < m; ++j) {
-                    if(check(state, j) >= 1) dp[i][state] = max(dp[i][state], dp[i - 1][state - pow(3, j)] + (nums[i] & (j + 1)));
-                }
-                if(i == n) ret = max(ret, dp[i][state]);            
-            }  
-        }
+   
+        for(int state = 0; state < pow(3, m); ++state) {
+            int i = 0;
+            int tmp = state;
+            while(tmp > 0) {
+                i += tmp % 3;
+                tmp /= 3;
+            }
+            if(i > n) continue;
+            for(int j = 0; j < m; ++j) {
+                if(check(state, j) >= 1) dp[i][state] = max(dp[i][state], dp[i - 1][state - pow(3, j)] + (nums[i] & (j + 1)));
+            }
+            if(i == n) ret = max(ret, dp[i][state]);            
+        }  
+        
         
         return ret;
 
