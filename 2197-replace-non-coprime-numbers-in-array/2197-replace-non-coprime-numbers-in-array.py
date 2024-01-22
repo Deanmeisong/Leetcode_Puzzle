@@ -1,9 +1,5 @@
-class Solution(object):
-    def replaceNonCoprimes(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
+class Solution:
+    def replaceNonCoprimes(self, nums: List[int]) -> List[int]:
         n = len(nums)
         res = []
         
@@ -13,7 +9,7 @@ class Solution(object):
             return a
         
         def lcm(x, y):
-            return (x * y) / gcd(x, y)
+            return (x * y) // gcd(x, y)
         
         for x in nums:
             while res and gcd(res[-1], x) > 1:
