@@ -11,7 +11,12 @@ public:
                 int k = n - count - 1 - j;
                 ret += k;
                 ++count;
-                while(k--) swap(s[j], s[j + 1]), ++j;
+                while(k--) {
+                    int tmp = s[j];
+                    s[j] = s[j + 1];
+                    s[j + 1] = tmp;
+                    ++j;
+                }
             }
         }
         
