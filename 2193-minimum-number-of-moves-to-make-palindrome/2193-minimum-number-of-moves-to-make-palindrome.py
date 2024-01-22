@@ -1,5 +1,9 @@
-class Solution:
-    def minMovesToMakePalindrome(self, S: str) -> int:
+class Solution(object):
+    def minMovesToMakePalindrome(self, S):
+        """
+        :type s: str
+        :rtype: int
+        """
         ret, n, count = 0, len(S), 0
         s = list(S)
         i = 0
