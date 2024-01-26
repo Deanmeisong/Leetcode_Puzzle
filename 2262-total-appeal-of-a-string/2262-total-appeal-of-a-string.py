@@ -1,9 +1,5 @@
-class Solution(object):
-    def appealSum(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+class Solution:
+    def appealSum(self, s: str) -> int:
         ans = 0
         n = len(s)
         last = [-1] * 26
