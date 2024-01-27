@@ -1,9 +1,5 @@
-class Solution(object):
-    def largestVariance(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+class Solution:
+    def largestVariance(self, s: str) -> int:
         cs = set(s)
         n = len(s)
         ret = 0
