@@ -13,11 +13,7 @@ public:
     
     int deleteText(int k) {
         int count = min(k, (int)st1.size());
-        int ret = count;
-        while(!st1.empty() && ret > 0) {
-            st1.pop();
-            --ret;
-        }
+        for(int i = 0; i < count; ++i) st1.pop();
         return count;
     }
     
