@@ -1,19 +1,12 @@
-class Solution(object):
-    def minScore(self, grid):
-        """
-        :type grid: List[List[int]]
-        :rtype: List[List[int]]
-        """
+class Solution:
+    def minScore(self, grid: List[List[int]]) -> List[List[int]]:
         m, n = len(grid), len(grid[0])
         nums = [(v, i, j) for (i, row) in enumerate(grid) for (j, v) in enumerate(row)]
+        
         nums.sort()
+        rm, cm, ans = [0] * m, [0] * n, [[0] * n for _ in range(m)]
         
-        rm = [0] * m
-        cm = [0] * n
-        ans = [[0] * n for _ in range(m)]
-        
-        for num in nums:
-            i, j = num[1], num[2]
+        for _, i, j in nums:
             ans[i][j] = max(rm[i], cm[j]) + 1
             rm[i] = cm[j] = ans[i][j]
             
