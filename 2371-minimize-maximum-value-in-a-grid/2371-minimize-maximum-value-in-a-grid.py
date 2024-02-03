@@ -1,5 +1,9 @@
-class Solution:
-    def minScore(self, grid: List[List[int]]) -> List[List[int]]:
+class Solution(object):
+    def minScore(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
         m, n = len(grid), len(grid[0])
         nums = [(v, i, j) for (i, row) in enumerate(grid) for (j, v) in enumerate(row)]
         
