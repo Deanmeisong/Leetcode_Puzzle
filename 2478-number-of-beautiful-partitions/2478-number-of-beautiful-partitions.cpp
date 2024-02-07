@@ -6,7 +6,6 @@ public:
     int beautifulPartitions(string s, int K, int minLength) {
         int n = s.length();
         s.insert(s.begin(), '#');
-        // s = "#" + s;
         dp[0][0] = 1;
         
         for (int i=1; i<=n; i++)
