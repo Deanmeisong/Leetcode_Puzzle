@@ -1,28 +1,32 @@
 # Definition for a binary tree node.
-# class TreeNode:
+# class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def countGreatEnoughNodes(self, root: Optional[TreeNode], k: int) -> int:
+class Solution(object):
+    def countGreatEnoughNodes(self, root, k):
+        """
+        :type root: Optional[TreeNode]
+        :type k: int
+        :rtype: int
+        """
+        self.ans = 0
         def push(pq, x):
             heappush(pq, x)
             if len(pq) > k:
                 heappop(pq)
                 
         def dfs(root):
-            if root is None:
-                return []
+            if not root: return []
             l, r = dfs(root.left), dfs(root.right)
             for x in r:
                 push(l, x)
             if len(l) == k and -l[0] < root.val:
-                nonlocal ans
-                ans += 1
+                 self.ans += 1
             push(l, -root.val)
             return l
         
-        ans = 0
         dfs(root)
-        return ans
+        return self.ans
+                
