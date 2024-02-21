@@ -15,9 +15,7 @@ public:
 //         }
 //         if(curBeauty + accumulate(count.begin() + curPos, count.end(), 0) < curBeauty) return;
         
-//         for(int i = curPos; i < count.size(); ++i) {
-//             dfs(i + 1, picked + 1, curBeauty + count[i], (ret * count[i]) % M, count);
-//         }
+
         if (curBeauty > beauty) return;
         if (picked > k) return ;
         
@@ -28,11 +26,14 @@ public:
         }
 
         if (curBeauty + accumulate(count.begin()+curPos, count.end(), 0) < beauty) return;
-        
-        for (int i=curPos; i<count.size(); i++)
-        {
-            dfs(i+1, picked+1, curBeauty+count[i],  ret*count[i]%M,  count);
+        for(int i = curPos; i < count.size(); ++i) {
+            dfs(i + 1, picked + 1, curBeauty + count[i], (ret * count[i]) % M, count);
         }
+        
+//         for (int i=curPos; i<count.size(); i++)
+//         {
+//             dfs(i+1, picked+1, curBeauty+count[i],  ret*count[i]%M,  count);
+//         }
 
     }
     
