@@ -7,8 +7,8 @@ public:
     LL M = 1e9 + 7;
     
     void dfs(int curPos, int picked, int curBeauty, LL ret, vector<int>& count) {
-//         if (picked > k) return ;
-//         if(curBeauty > beauty) return;
+        if (picked > k) return ;
+        if(curBeauty > beauty) return;
 //         if(picked == k && curBeauty == beauty) {
 //             global = (global + ret) % M;
 //             return;
@@ -16,8 +16,8 @@ public:
 //         if(curBeauty + accumulate(count.begin() + curPos, count.end(), 0) < curBeauty) return;
         
 
-        if (curBeauty > beauty) return;
-        if (picked > k) return ;
+//         if (curBeauty > beauty) return;
+//         if (picked > k) return ;
         
         if (curBeauty == beauty && picked == k)
         {                     
