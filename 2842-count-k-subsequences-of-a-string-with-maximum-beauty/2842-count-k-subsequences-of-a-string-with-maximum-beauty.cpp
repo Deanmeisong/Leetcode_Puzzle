@@ -1,12 +1,23 @@
 using LL = long long;
-LL M = 1e9+7;
-class Solution {    
-    int k;
+class Solution {
+public:
+    int k = 0;
     int beauty = 0;
     LL global = 0;
-public:   
-    void dfs(int curPos, int picked, int curBeauty, LL ret, vector<int>&count)
-    {        
+    LL M = 1e9 + 7;
+    
+    void dfs(int curPos, int picked, int curBeauty, LL ret, vector<int>& count) {
+//         if (picked > k) return ;
+//         if(curBeauty > beauty) return;
+//         if(picked == k && curBeauty == beauty) {
+//             global = (global + ret) % M;
+//             return;
+//         }
+//         if(curBeauty + accumulate(count.begin() + curPos, count.end(), 0) < curBeauty) return;
+        
+//         for(int i = curPos; i < count.size(); ++i) {
+//             dfs(i + 1, picked + 1, curBeauty + count[i], (ret * count[i]) % M, count);
+//         }
         if (curBeauty > beauty) return;
         if (picked > k) return ;
         
@@ -22,25 +33,19 @@ public:
         {
             dfs(i+1, picked+1, curBeauty+count[i],  ret*count[i]%M,  count);
         }
+
     }
     
-    
-    int countKSubsequencesWithMaxBeauty(string s, int k) 
-    {
+    int countKSubsequencesWithMaxBeauty(string s, int k) {
         this->k = k;
-        unordered_map<int,int>Map;
-        for (auto ch: s)
-            Map[ch]+=1;
-        
-        vector<int>count;
-        for (auto [k,v]: Map)
-            count.push_back(v);
-        
+        unordered_map<char, int> Map;
+        for(char ch : s) Map[ch] += 1;
+        vector<int> count;
+        for(auto [ch, freq] : Map) count.push_back(freq);
         sort(count.rbegin(), count.rend());
         if (count.size() <k) return 0;                
-        for (int i=0; i<k; i++)
-            beauty += count[i];        
-                        
+
+        for(int i = 0; i < k; ++i) beauty += count[i];
         dfs(0, 0, 0, 1, count);
         
         return global;
