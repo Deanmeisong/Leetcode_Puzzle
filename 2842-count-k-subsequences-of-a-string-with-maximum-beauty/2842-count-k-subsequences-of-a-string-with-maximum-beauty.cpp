@@ -9,31 +9,24 @@ public:
     void dfs(int curPos, int picked, int curBeauty, LL ret, vector<int>& count) {
         if (picked > k) return ;
         if(curBeauty > beauty) return;
-//         if(picked == k && curBeauty == beauty) {
-//             global = (global + ret) % M;
-//             return;
-//         }
-//         if(curBeauty + accumulate(count.begin() + curPos, count.end(), 0) < curBeauty) return;
-        
-
-//         if (curBeauty > beauty) return;
-//         if (picked > k) return ;
-        
-        if (curBeauty == beauty && picked == k)
-        {                     
-            global = (global+ret)%M;
+        if(picked == k && curBeauty == beauty) {
+            global = (global + ret) % M;
             return;
         }
+//         if(curBeauty + accumulate(count.begin() + curPos, count.end(), 0) < curBeauty) return;
+        
+        
+        // if (curBeauty == beauty && picked == k)
+        // {                     
+        //     global = (global+ret)%M;
+        //     return;
+        // }
 
         if (curBeauty + accumulate(count.begin()+curPos, count.end(), 0) < beauty) return;
         for(int i = curPos; i < count.size(); ++i) {
             dfs(i + 1, picked + 1, curBeauty + count[i], (ret * count[i]) % M, count);
         }
-        
-//         for (int i=curPos; i<count.size(); i++)
-//         {
-//             dfs(i+1, picked+1, curBeauty+count[i],  ret*count[i]%M,  count);
-//         }
+
 
     }
     
