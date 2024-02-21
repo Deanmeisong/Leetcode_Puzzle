@@ -13,16 +13,8 @@ public:
             global = (global + ret) % M;
             return;
         }
-//         if(curBeauty + accumulate(count.begin() + curPos, count.end(), 0) < curBeauty) return;
-        
-        
-        // if (curBeauty == beauty && picked == k)
-        // {                     
-        //     global = (global+ret)%M;
-        //     return;
-        // }
+        if(curBeauty + accumulate(count.begin() + curPos, count.end(), 0) < beauty) return;
 
-        if (curBeauty + accumulate(count.begin()+curPos, count.end(), 0) < beauty) return;
         for(int i = curPos; i < count.size(); ++i) {
             dfs(i + 1, picked + 1, curBeauty + count[i], (ret * count[i]) % M, count);
         }
