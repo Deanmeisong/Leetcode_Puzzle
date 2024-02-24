@@ -4,15 +4,13 @@ public:
     int indegree[100005];
     vector<int> countVisitedNodes(vector<int>& edges) {
         int n = edges.size();
-        vector<int> ret(n);
-
+        vector<int> rets(n);
         for(int i = 0; i < n; ++i) {
             next[i] = edges[i];
-            ++indegree[next[i]];
+            indegree[edges[i]] += 1;
         }
-        
         queue<int> q;
-        for(int i = 0; i < n; ++i)
+        for(int i = 0; i< n; ++i) 
             if(indegree[i] == 0) q.push(i);
         
         while(!q.empty()) {
@@ -26,32 +24,31 @@ public:
         
         for(int i = 0; i < n; ++i) {
             if(indegree[i] == 0) continue;
-            if(ret[i] != 0) continue;
-            
-            int j = i;
+            if(rets[i] != 0) continue;
             int len = 1;
+            int j = i;
             while(next[j] != i) {
+                len++;
                 j = next[j];
-                ++len;
             }
-            
             j = i;
             while(next[j] != i) {
-                ret[j] = len;
+                rets[j] = len;
                 j = next[j];
             }
-        }
 
-        for(int i = 0; i < n; ++i) {
-            if(indegree[i] == 0) dfs(i, ret);
         }
         
-        return ret;
-    }
-    
-    int dfs(int cur, vector<int>& ret) {
-        if(ret[cur] != 0) return ret[cur];
-        ret[cur] = dfs(next[cur], ret) + 1;
-        return ret[cur];
+        function<int(int)> dfs = [&](int cur) {
+            if(rets[cur] != 0) return rets[cur];
+            rets[cur] = dfs(next[cur]) + 1;
+            return rets[cur];
+        };
+        
+        for(int i = 0; i < n; ++i) {
+            if(indegree[i] == 0) dfs(i);
+        }
+        
+        return rets;
     }
 };
