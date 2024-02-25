@@ -2,43 +2,37 @@ class Solution {
  public:
   int maximumPoints(vector<vector<int>>& edges, vector<int>& coins, int k) {
     const int n = coins.size();
-    vector<vector<int>> graph(n);
-    vector<vector<int>> mem(n, vector<int>(kMaxHalved + 1, -1));
+    vector<vector<int>> g(n);
+    vector<vector<int>> f(n, vector<int>(14, -1));
 
     for (const vector<int>& edge : edges) {
       const int u = edge[0];
       const int v = edge[1];
-      graph[u].push_back(v);
-      graph[v].push_back(u);
+      g[u].push_back(v);
+      g[v].push_back(u);
     }
 
-    return dfs(graph, 0, /*prev=*/-1, coins, k, /*halved=*/0, mem);
+    return dfs(g, 0, -1, coins, k, 0, f);
   }
 
- private:
-  static constexpr int kMaxCoin = 10000;
-  static constexpr int kMaxHalved = 13;  // log2(kMaxCoin) = 13
-
-  int dfs(const vector<vector<int>>& graph, int u, int prev,
-          const vector<int>& coins, int k, int halved,
-          vector<vector<int>>& mem) {
+  int dfs(const vector<vector<int>>& g, int i, int fa,
+          const vector<int>& coins, int k, int j,
+          vector<vector<int>>& f) {
     // All the children will be 0, so no need to explore.
-    if (halved > kMaxHalved)
-      return 0;
-    if (mem[u][halved] != -1)
-      return mem[u][halved];
+    if (j > 13) return 0;
+    if (f[i][j] != -1) return f[i][j];
 
-    const int val = coins[u] / (1 << halved);
-    int takeAll = val - k;
-    int takeHalf = floor(val / 2.0);
+    int a = (coins[i] >> j) - k;
+    int b = coins[i] >> (j+1);
 
-    for (const int v : graph[u]) {
-      if (v == prev)
-        continue;
-      takeAll += dfs(graph, v, u, coins, k, halved, mem);
-      takeHalf += dfs(graph, v, u, coins, k, halved + 1, mem);
+    for (const int c : g[i]) {
+      if (c != fa) {
+          a += dfs(g, c, i, coins, k, j, f);
+          b += dfs(g, c, i, coins, k, j + 1, f);
+      }
+
     }
 
-    return mem[u][halved] = max(takeAll, takeHalf);
+    return f[i][j] = max(a, b);
   }
 };
