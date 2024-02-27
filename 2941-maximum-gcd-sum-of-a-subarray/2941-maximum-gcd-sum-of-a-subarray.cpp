@@ -11,7 +11,8 @@ public:
             vector<pair<int, int>> g;
             for(auto [j, v] : f) {
                 int x = gcd(v, nums[i]);
-                if(g.empty() || g.back().second != x) g.push_back({j, x});
+                if(g.empty() || g.back().second < x) 
+                    g.push_back({j, x});
             }
             f = move(g);
             f.push_back({i, nums[i]});
