@@ -9,7 +9,7 @@ public:
         
         for(int i = 1; i < n; ++i) {
             dp[i] = dp[dq.front()] + prices[i];
-            if(!dq.empty() && dq.front() + dq.front() + 1 < i) dq.pop_front();
+            while(!dq.empty() && dq.front() + dq.front() + 1 < i) dq.pop_front();
             while(!dq.empty() && dp[dq.back()] >= dp[i]) dq.pop_back();
             dq.push_back(i);
         }
