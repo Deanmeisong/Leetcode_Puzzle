@@ -13,5 +13,5 @@ class Solution:
         while num != target or count < n:
             num = ((num&mask)<<1) + stream.next();
             count += 1
-        
+        print(count)
         return count - n
