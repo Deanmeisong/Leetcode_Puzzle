@@ -1,9 +1,5 @@
-class Solution(object):
-    def maxIncreasingGroups(self, A):
-        """
-        :type usageLimits: List[int]
-        :rtype: int
-        """
+class Solution:
+    def maxIncreasingGroups(self, A: List[int]) -> int:
         A.sort()
         tt = ans = 0
         for a in A:
