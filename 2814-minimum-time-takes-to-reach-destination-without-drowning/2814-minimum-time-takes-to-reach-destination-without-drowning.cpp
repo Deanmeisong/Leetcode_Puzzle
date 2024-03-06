@@ -43,10 +43,10 @@ public:
         q.emplace(si, sj);
         vis[si][sj] = true;
         
-//         for(int t = 0; !q.empty(); ++t) {
-//             for(int k = q.size(); k; --k) {
-//                 auto [i, j] = q.front(); q.pop();
-//                 if(land[i][j] == "D") return t;
+        for(int t = 0; !q.empty(); ++t) {
+            for(int k = q.size(); k; --k) {
+                auto [i, j] = q.front(); q.pop();
+                if(land[i][j] == "D") return t;
 //                 for(int d = 0; d < 4; ++d) {
 //                     int x = i + dirs[d]; int y = j + dirs[d+1];
 //                     if (x >= 0 && x < m && y >= 0 && y < n && g[x][y] > t + 1) {
@@ -61,16 +61,14 @@ public:
 //             }
 //         }
         
-        // q.emplace(si, sj);
-        // memset(vis, false, sizeof(vis));
-        // vis[si][sj] = true;
-        for (int t = 0; !q.empty(); ++t) {
-            for (int k = q.size(); k; --k) {
-                auto [i, j] = q.front();
-                q.pop();
-                if (land[i][j] == "D") {
-                    return t;
-                }
+
+        // for (int t = 0; !q.empty(); ++t) {
+        //     for (int k = q.size(); k; --k) {
+                // auto [i, j] = q.front();
+                // q.pop();
+                // if (land[i][j] == "D") {
+                //     return t;
+                // }
                 for (int d = 0; d < 4; ++d) {
                     int x = i + dirs[d], y = j + dirs[d + 1];
                     if (x >= 0 && x < m && y >= 0 && y < n && !vis[x][y] && g[x][y] > t + 1) {
