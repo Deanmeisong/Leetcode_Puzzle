@@ -4,6 +4,7 @@ public:
     int parent[10005];
     int level[10005];
     int count[10005][27];
+    int ancestors[10005][18];
 
     vector<int> minOperationsQueries(int n, vector<vector<int>>& edges, vector<vector<int>>& queries) {
         for(auto& e : edges) {
@@ -16,6 +17,16 @@ public:
         dfs(0, -1, 0, temp);
         parent[0] = -1;
         vector<int> rets;
+        
+        int M = ceil(log(n)/log(2));
+        for(int i = 0; i < n; ++i)
+            ancestors[i][0] = parent[i];
+        ancestors[0][0] = 0;
+        
+        for(int j = 1; j <= M; ++j)
+            for(int i = 0; i < n; ++i) {
+                ancestors[i][j] = ancestors[ancestors[i][j-1]][j-1];
+            }
        
         for(auto q : queries) {
             int a = q[0], b = q[1];
@@ -51,20 +62,29 @@ public:
         }
     }
     
-    int getLCA(int p, int q) {
-        while(1) {
-            if(level[p] > level[q]) {
-                p = parent[p];
-            } else if(level[p] < level[q]) {
-                q = parent[q];
-            } else if(p == q) {
-                return p;
-            } else {
-                p = parent[p];
-                q = parent[q];
-            }
+    int getK(int i, int k) {
+        int cur = i;
+        for(int j = 0; j <= 17; ++j) {
+            if((k>>j)&1) cur = ancestors[cur][j];
         }
-
-        return 0;
+        return cur;
     }
+    
+    int getLCA(int p, int q) {
+        while(level[p] != level[q]) {
+            if(level[p] > level[q]) p = getK(p, level[p] - level[q]);
+            else q = getK(q, level[q] - level[p]);
+        }
+        int left = 0, right = level[p];
+        while (left < right)
+        {
+            int mid = left+(right-left)/2;
+            if (getK(p, mid)==getK(q,mid))
+                right = mid;
+            else
+                left = mid+1;
+        }
+        return getK(p, left);
+    }
+
 };
