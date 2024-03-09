@@ -13,10 +13,6 @@ public:
         }
         
         for(int i = 0; i < m; ++i) {
-            int state = 0;
-            for(int j = 0; j < n; ++j) {
-                if(grid[i][j]) state += (1<<j);
-            }
             for(int s = 0; s < (1<<5); ++s) {
                 int flag = 0;
                 for(int j = 0; j < n; ++j) {
@@ -30,13 +26,6 @@ public:
                 vector<int> rets{i, Map[s][0]};
                     sort(rets.begin(), rets.end());
                     return rets;
-                // for(int k : Map[s]) {
-                //     if(k != i) {
-                //         vector<int> rets{i, k};
-                //         sort(rets.begin(), rets.end());
-                //         return rets;
-                //     }
-                // }
             }
         }
         
