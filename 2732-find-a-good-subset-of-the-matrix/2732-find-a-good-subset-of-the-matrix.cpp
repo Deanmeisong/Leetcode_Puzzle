@@ -27,13 +27,16 @@ public:
                 }
                 if(flag) continue;
                 if(Map[s].size() == 0) continue;
-                for(int k : Map[s]) {
-                    if(k != i) {
-                        vector<int> rets{i, k};
-                        sort(rets.begin(), rets.end());
-                        return rets;
-                    }
-                }
+                vector<int> rets{i, Map[s][0]};
+                    sort(rets.begin(), rets.end());
+                    return rets;
+                // for(int k : Map[s]) {
+                //     if(k != i) {
+                //         vector<int> rets{i, k};
+                //         sort(rets.begin(), rets.end());
+                //         return rets;
+                //     }
+                // }
             }
         }
         
