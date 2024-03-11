@@ -6,13 +6,8 @@
 #         pass
 #     def moveRight(self):
 #         pass
-class Solution(object):
-    def houseCount(self, street, k):
-        """
-        :type street: Street
-        :type k: int
-        :rtype: int
-        """
+class Solution:
+    def houseCount(self, street: Optional['Street'], k: int) -> int:
         while not street.isDoorOpen():
             street.moveRight()
         ans = 0
