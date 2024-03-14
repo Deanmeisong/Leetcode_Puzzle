@@ -9,6 +9,7 @@ public:
         vector<multiset<int>> rs(m); vector<multiset<int>> cs(n);
         for(int i = 0; i < m; ++i)
             for(int j = 0; j < n; ++j) {
+
                 while(!rd[i].empty() && rd[i].top().first == j) {
                     int x = rd[i].top().second;
                     rd[i].pop();
@@ -21,14 +22,18 @@ public:
                     if(y > 0) cs[j].insert(y);
                     if(y < 0) cs[j].erase(cs[j].find(-y));
                 }
-                int minV = INT_MAX/2;
-                if(!rs[i].empty()) minV = min(minV, *rs[i].begin());
-                if(!cs[j].empty()) minV = min(minV, *cs[j].begin());
-                dp[i][j] = minV;
-                if(i == 0 && j == 0) dp[i][j] = 0;
-                
+
                 int step = grid[i][j];
-                if(step == 0) continue;
+                if(step == 0 && (i != m - 1 || j != n - 1)) continue;
+                if(i == 0 && j == 0) dp[i][j] = 0;
+                else {
+                    int minV = INT_MAX/2;
+                    if(!rs[i].empty()) minV = min(minV, *rs[i].begin());
+                    if(!cs[j].empty()) minV = min(minV, *cs[j].begin());
+                    dp[i][j] = minV;
+                }
+
+
                 rd[i].push({j+1, dp[i][j] + 1});
                 rd[i].push({j+step+1, -(dp[i][j] + 1)});
                 cd[j].push({i+1, dp[i][j] + 1});
