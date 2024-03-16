@@ -37,7 +37,9 @@ public:
         vector<pair<LL,int>> arr2;
         
         LL ans = sum1[cur];
-        ans = max(ans, sum2[cur] - price[cur]);
+        // ans = max(ans, sum2[cur] - price[cur]);
+        
+        if(cur != 0) ans = max(ans, sum2[cur]);
         
         for(int nxt : next[cur]) {
             if(nxt == parent) continue;
