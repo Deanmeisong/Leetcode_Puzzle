@@ -17,19 +17,8 @@ public:
             LL p = (x-d)/(k+1);
             LL x2 = x - p;
             LL d2 = d + p*k;
-            if(d2 == x2) {
-                nums[i] = d2;
-            } else {
-                nums[i] = x2-1;
-            }
-            // if (d2 < x2)
-            // {
-            //     nums[i] = x2-1;                
-            // }
-            // else
-            // {
-            //     nums[i] = d2;
-            // }
+            if(d2 < x2) nums[i] = x2-1;
+            else nums[i] = d2;
             ret += k;
             
         }
