@@ -9,12 +9,12 @@ public:
                         g[i] = num;
                     else 
                         g[i] = gcd(g[i], num);
-                    if(num/i != i) {
+                    
                     if(g[num/i] == 0) 
                         g[num/i] = num;
                     else 
                         g[num/i] = gcd(g[num/i], num);
-                }
+                
                 }
                 
             }
