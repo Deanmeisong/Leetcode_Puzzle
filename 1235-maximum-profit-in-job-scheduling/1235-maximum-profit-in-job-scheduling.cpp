@@ -1,24 +1,20 @@
 class Solution {
 public:
-    int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
-        int n = startTime.size();
-        vector<vector<int>> jobs;
-        for(int i = 0; i < n; ++i) {
-            jobs.push_back({startTime[i], endTime[i], profit[i]});
-        }
-        sort(jobs.begin(), jobs.end(), [](auto& a, auto& b){return a[1] < b[1];});
+    int jobScheduling(vector<int>& s, vector<int>& e, vector<int>& p) {
+        int n = s.size();
+        vector<vector<int>> js;
+        for(int i = 0; i < n; ++i) js.push_back({s[i], e[i], p[i]});
+        sort(js.begin(), js.end(), [](auto& a, auto& b) {return a[1] < b[1];});
         map<int,int> dp;
         dp[-1] = 0;
-        int ret = 0;
-        
+        int ans = 0;
         for(int i = 0; i < n; ++i) {
-            int ans = ret;
-            auto iter = dp.upper_bound(jobs[i][0]);
-            iter = prev(iter, 1);
-            ans = max(ans, iter->second + jobs[i][2]);
-            dp[jobs[i][1]] = ans;
-            ret = max(ret, ans);
+            int cur = ans;
+            auto iter = dp.upper_bound(js[i][0]);
+            cur = max(cur, prev(iter,1)->second + js[i][2]);
+            dp[js[i][1]] = cur;
+            ans = max(cur, ans);
         }
-        return ret;
+        return ans;
     }
 };
