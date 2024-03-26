@@ -8,14 +8,14 @@ public:
         vector<vector<int>> js;
         for(int i = 0; i < n; ++i) js.push_back({s[i], e[i], p[i]});
         sort(js.begin(), js.end(),cmp);
-        map<int,int> dp;
-        dp[-1] = 0;
+        vector<pair<int,int>> dp;
+        dp.push_back({-1, 0});
         int ans = 0;
         for(int i = 0; i < n; ++i) {
             int cur = ans;
-            auto iter = dp.upper_bound(js[i][0]);
+            auto iter = upper_bound(dp.begin(), dp.end(), make_pair(js[i][0], INT_MAX));
             cur = max(cur, prev(iter,1)->second + js[i][2]);
-            dp[js[i][1]] = cur;
+            dp.push_back({js[i][1], cur});
             ans = max(cur, ans);
         }
         return ans;
