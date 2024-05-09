@@ -1,3 +1,4 @@
+
 class TrieNode {
 public:
     int index;
@@ -10,10 +11,10 @@ private:
     TrieNode* root;
     vector<string> words;
     
-    bool change(int i, int j) { // change i to j ?
+    bool change(int i, int j) { 
         int n = words.size();
-        return (0 <= j && j < n) && // j should be valid
-            (!(0 <= i && i < n) || // change if i is not valid
+        return (0 <= j && j < n) && 
+            (!(0 <= i && i < n) || 
              words[j].size() < words[i].size() || // or if less size
              (words[j].size() == words[i].size() && j < i)); // or if less index
     }
