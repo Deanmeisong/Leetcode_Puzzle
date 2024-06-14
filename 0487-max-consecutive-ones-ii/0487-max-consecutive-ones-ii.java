@@ -8,7 +8,7 @@ class Solution {
                 dp1 = dp0+1;
                 dp0 = 0;
             }
-            ans = Math.max(ans, Math.max(dp1, dp0));
+            ans = Math.max(ans, dp1);
         }
         return ans;
     }
