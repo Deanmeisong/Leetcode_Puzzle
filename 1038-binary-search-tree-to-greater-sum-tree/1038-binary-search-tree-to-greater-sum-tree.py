@@ -1,10 +1,10 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution:
     def __init__(self):
         self.sum = 0
     def bstToGst(self, root):
@@ -14,4 +14,7 @@ class Solution(object):
             root.val = self.sum
             self.bstToGst(root.left)
         return root
+        
+  
+
         
