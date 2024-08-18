@@ -1,5 +1,6 @@
 class Solution {
 public:
+    int diff[20005];
     vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
         vector<int> diff(n+2, 0);
         for(auto book : bookings) {
